@@ -6,12 +6,6 @@ import PostList from './PostList';
 import PostToolBar from '../../components/PostToolBar';
 
 class PostListContainer extends Component {
-  constructor() {
-    super();
-    // this.updateVote = this.updateVote.bind(this);
-    // this.sortPopular = this.sortPopular.bind(this);
-    // this.sortNewest = this.sortNewest.bind(this);
-  }
   updateVote(id) {
     this.props.dispatch(updateVote(id));
   }

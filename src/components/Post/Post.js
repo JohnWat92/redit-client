@@ -8,8 +8,6 @@ import Chip from 'material-ui/Chip';
 import styles from './styles.css';
 import { updateVote } from '../../redux/actions';
 
-
-
 const Post = ({ post, votes, dispatch }) => {
   return (
     <div className={styles.postCard}>
@@ -36,8 +34,6 @@ const Post = ({ post, votes, dispatch }) => {
     </div>
   );
 };
-
-
 
 export default connect()(Post);
 
