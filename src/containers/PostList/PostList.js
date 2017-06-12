@@ -3,6 +3,7 @@ import Post from '../../components/Post';
 import { connect } from 'react-redux';
 
 const PostList = ({ posts }) => {
+  console.log(posts);
   return (
     <div>
       {posts.map(post => (

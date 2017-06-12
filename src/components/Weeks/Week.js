@@ -5,8 +5,28 @@ import Divider from 'material-ui/Divider';
 import { data } from '../../mock-data';
 
 class Week extends Component {
-  weekItems(category, i) { return (<ListItem primaryText={category} key={i} />); }
-
+  constructor(){
+    super();
+    this.state = {
+      data: [],
+    };
+  }
+  componentDidMount(){
+    fetch('http://localhost:3001/api/weeks')
+      .then(response => response.json())
+      .then((data) => (
+        this.setState({ data })
+        )
+      )
+      .catch(err => console.log());
+  }
+  weekItems(category, i) {
+    return (
+      <div key={i}>
+        <ListItem primaryText={category} />
+      </div>
+    );
+  }
   createWeek(week, i) {
     return (
       <List key={i}>
@@ -17,9 +37,10 @@ class Week extends Component {
     );
   }
   render() {
+    console.log('this.state.data', this.state.data)
     return (
       <div>
-        {data.weeks.map((week, i) => this.createWeek(week, i))}
+        { data.weeks.map((week, i) => this.createWeek(week, i))}
       </div>
     );
   }
