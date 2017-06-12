@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { List, ListItem } from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
 import Divider from 'material-ui/Divider';
-import { data } from '../../mock-data';
+// import { data } from '../../mock-data';
 
 class Week extends Component {
   constructor(){
@@ -14,16 +14,13 @@ class Week extends Component {
   componentDidMount(){
     fetch('http://localhost:3001/api/weeks')
       .then(response => response.json())
-      .then((data) => (
-        this.setState({ data })
-        )
-      )
-      .catch(err => console.log());
+      .then((weeks) => this.setState({ data: weeks }))
+      .catch(err => console.log(err));
   }
   weekItems(category, i) {
     return (
       <div key={i}>
-        <ListItem primaryText={category} />
+        <ListItem primaryText={category.title} />
       </div>
     );
   }
@@ -32,15 +29,15 @@ class Week extends Component {
       <List key={i}>
         <Subheader>{week.title}</Subheader>
         <Divider />
-        {week.categories.map(this.weekItems)}
+        {week.lessons.map(this.weekItems)}
       </List>
     );
   }
   render() {
-    console.log('this.state.data', this.state.data)
+    console.log('this.state.data', this.state.data);
     return (
       <div>
-        { data.weeks.map((week, i) => this.createWeek(week, i))}
+        { this.state.data.map((week, i) => this.createWeek(week, i))}
       </div>
     );
   }
